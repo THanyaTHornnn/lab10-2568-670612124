@@ -8,7 +8,7 @@ export default function MainLayout() {
       <div className="row h-100">
         <div className="col-2 col-md-2 p-0">
           {/* Sidebar ซ้าย */}
-          <Sidebar userName="chanadda" type="admin" />
+          <Sidebar userName="thanyathorn" type="admin" />
         </div>
         <div className="col-10 col-md-10 p-0">
           {/* Header ด้านบน */}

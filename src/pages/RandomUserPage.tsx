@@ -10,9 +10,11 @@ export default function RandomUserPage() {
   const [genAmount, setGenAmount] = useState(1);
   const [isFirstload,setFirstload] = useState(true);
   useEffect(() => {
-    const storedAmount = localStorage.getItem("genAmount");
-    if (storedAmount !== null) {
-      setGenAmount(Number(storedAmount));
+    const storedAmount = localStorage.getItem("setGenAmount");
+    if (storedAmount === null) {
+      return;
+    }else{
+      setGenAmount(JSON.parse(storedAmount));
     }
   }, []);
 
@@ -20,8 +22,10 @@ export default function RandomUserPage() {
     if(isFirstload){
       setFirstload(false);
       return;
+    }else{
+      const amount = JSON.stringify(genAmount)
+      localStorage.setItem("setGenAmount", amount);
     }
-    localStorage.setItem("genAmount", String(genAmount));
   }, [genAmount]);
 
 const generateBtnOnClick = async () => {
@@ -61,7 +65,7 @@ const generateBtnOnClick = async () => {
       )}
       {users && !isLoading && users.map((user : any, index: number) => 
     <UserCard
-    key={user.id ?? index}
+    key = {user.email}
     name={user.name} 
     imgUrl={user.imgUrl} 
     address={user.address} 
